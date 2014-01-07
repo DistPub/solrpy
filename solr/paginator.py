@@ -36,10 +36,6 @@ class SolrPaginator:
             except ValueError:
                 raise ValueError('default_page_size must be an integer')
 
-            if self.page_size < len(self.result.results):
-                raise ValueError('Invalid default_page_size specified, lower '
-                                 'than number of results')
-
         else:
             self.page_size = len(self.result.results)
 

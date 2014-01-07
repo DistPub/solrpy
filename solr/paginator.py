@@ -32,7 +32,7 @@ class SolrPaginator:
         elif default_page_size:
             try:
                 self.page_size = int(default_page_size)
-                self.params['rows']=self.page_size
+                self.params['rows']=str(self.page_size)
             except ValueError:
                 raise ValueError('default_page_size must be an integer')
 

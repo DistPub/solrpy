@@ -60,13 +60,11 @@ class SolrPaginator:
     def _fetch_page(self, start=0):
         """Retrieve a new result response from Solr."""
         # need to convert the keys to strings to pass them as parameters
-        new_params = {}
-        for k, v in self.params.items():
-            new_params[str(k)] = v.encode('utf-8')
-
-        # get the new start index
-        new_params['start'] = start
-        return self.query(**new_params)
+        params = dict(self.result._params)
+        params['start'] = start
+        q = params['q']
+        del params['q']
+        return self.query(q,**params)
 
     def page(self, page_num=1):
         """Return the requested Page object"""
